@@ -38,8 +38,8 @@
                     <div class="inputBox">
                         <input type="submit" value="Login">
                     </div>
-                    <p class="forget">Forget Password?        <a href="#">Click Here</a></p>
-                    <p class="forget">Don't have an account?        <a href="#">Click Here</a></p>
+                    <p class="forget">Forget Password?        <a href="#" onclick="adminConfirmation()">Click Here</a></p>
+                    <p class="forget">Don't have an account?        <a href="addAdmin.jsp">Click Here</a></p>
                 </form>
             </div>
         </div>
@@ -68,6 +68,15 @@
     const stateMessage = params.get('state');
     if (stateMessage) {
         alert(stateMessage);
+    }
+
+    function adminConfirmation() {
+        var adminAccount = prompt("请输入admin账号：");
+        if (adminAccount) {
+            window.location.href = "updateAdmin.jsp?adminAccount=" + adminAccount;
+        } else {
+            alert("请输入admin账号！");
+        }
     }
 </script>
 </body>

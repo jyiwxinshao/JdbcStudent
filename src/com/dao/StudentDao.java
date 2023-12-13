@@ -2,10 +2,7 @@ package com.dao;
 
 import com.bean.Student;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +21,9 @@ public class StudentDao {
                 Student stu = new Student();
                 stu.setId(rs.getInt(1));
                 stu.setName(rs.getString(2));
-                stu.setPassword(rs.getString(3));
+                stu.setAge(rs.getInt(3));
+                stu.setBirthday(rs.getDate(4));
+                stu.setSex(rs.getString(5));
                 list.add(stu);
             }
         } catch (SQLException e) {
@@ -42,10 +41,12 @@ public class StudentDao {
         ResultSet rs = null;
         try {
             con = BaseDao.getConnection();
-            stmt = con.prepareStatement("insert into stuno(id,name,password) values(?,?,?)");
+            stmt = con.prepareStatement("insert into stuno(id,name,age,birthday,sex) values(?,?,?,?,?)");
             stmt.setInt(1, stu.getId());
             stmt.setString(2, stu.getName());
-            stmt.setString(3, stu.getPassword());
+            stmt.setInt(3, stu.getAge());
+            stmt.setDate(4, (Date) stu.getBirthday());
+            stmt.setString(5, stu.getSex());
             stmt.executeUpdate();       //更新数据
         } catch (SQLException e) {
             e.printStackTrace();
@@ -80,7 +81,9 @@ public class StudentDao {
             if (rs.next()) {
                 s.setId(rs.getInt("id"));
                 s.setName(rs.getString("name"));
-                s.setPassword(rs.getString("password"));
+                s.setAge(rs.getInt("age"));
+                s.setBirthday(rs.getDate("birthday"));
+                s.setSex(rs.getString("sex"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -97,12 +100,14 @@ public class StudentDao {
         ResultSet rs = null;
         try {
             conn = BaseDao.getConnection();
-            String sql = "UPDATE stuno SET id=?,name=?,password=? where id=?";
+            String sql = "UPDATE stuno SET id=?,name=?,age=?,birthday=?,sex=? where id=?";
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, student.getId());
             stmt.setString(2, student.getName());
-            stmt.setString(3, student.getPassword());
-            stmt.setInt(4, student.getId());
+            stmt.setInt(3, student.getAge());
+            stmt.setDate(4, new java.sql.Date(student.getBirthday().getTime()));
+            stmt.setString(5, student.getSex());
+            stmt.setInt(6, student.getId());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -126,7 +131,9 @@ public class StudentDao {
                 Student stu = new Student();
                 stu.setId(rs.getInt(1));
                 stu.setName(rs.getString(2));
-                stu.setPassword(rs.getString(3));
+                stu.setAge(rs.getInt(3));
+                stu.setBirthday(rs.getDate(4));
+                stu.setSex(rs.getString(5));
                 allStudent.add(stu);
             }
         } catch (SQLException e) {

@@ -2,6 +2,7 @@ package com.dao;
 
 import java.sql.*;
 
+// 连接数据库
 public class BaseDao {
     static {
         try {

@@ -1,5 +1,8 @@
 <%@ page import="com.bean.Student" %>
-<%@ page import="com.dao.StudentDao" %><%--
+<%@ page import="com.dao.StudentDao" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.text.ParseException" %><%--
   Created by IntelliJ IDEA.
   User: 蒋万诺
   Date: 2023/12/4
@@ -16,11 +19,22 @@
     request.setCharacterEncoding("UTF-8");
     int id = Integer.parseInt(request.getParameter("id"));
     String name = request.getParameter("name");
-    String pwd = request.getParameter("password");
+    int age=Integer.parseInt(request.getParameter("age"));
+    String birthdayString = request.getParameter("birthday");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    Date birthday = null;
+    try {
+        birthday = sdf.parse(birthdayString);
+    } catch (ParseException e) {
+        e.printStackTrace();
+    }
+    String sex=request.getParameter("sex");
     Student student = new Student();
     student.setId(id);
     student.setName(name);
-    student.setPassword(pwd);
+    student.setAge(age);
+    student.setBirthday(birthday);
+    student.setSex(sex);
     StudentDao.updateStudent(student);
     // 返回查看界面
     response.sendRedirect("show.jsp");

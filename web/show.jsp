@@ -23,10 +23,11 @@
         <tr class="first">
             <td>学号</td>
             <td>姓名</td>
-            <td>密码</td>
+            <td>年龄</td>
+            <td>生日</td>
+            <td>性别</td>
             <td>
-                <a href="add.jsp" style="color: #a8a8a8;">增加学生</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="search.jsp"
-                                                                                             style="color: #a8a8a8">查询学生</a>
+                <a href="add.jsp" style="color: #a8a8a8;">增加学生</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="searchStudent.jsp" style="color: #a8a8a8;">查询学生</a>
             </td>
         </tr>
         <%
@@ -41,11 +42,15 @@
             </td>
             <td width="75px"><%=student.getName()%>
             </td>
-            <td width="75px"><%=student.getPassword()%>
+            <td width="75px"><%=student.getAge()%>
+            </td>
+            <td width="75px"><%=student.getBirthday()%>
+            </td>
+            <td width="75px"><%=student.getSex()%>
             </td>
             <td width="120px">
-                <a href="delete.jsp?id=<%=student.getId() %>">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="updateStudent.jsp?id=<%=student.getId()%>">修改</a>
+                <a href="javascript:void(0);" onclick="confirmDelete(<%=student.getId()%>)" style="color: #a8a8a8;">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="updateStudent.jsp?id=<%=student.getId()%>" style="color: #a8a8a8;">修改</a>
             </td>
         </tr>
         <tr></tr>
@@ -60,6 +65,12 @@
     const stateMessage = params.get('state');
     if (stateMessage) {
         alert(stateMessage);
+    }
+    function confirmDelete(id) {
+        var result = confirm("确定要删除吗？");
+        if (result) {
+            location.href='delete.jsp?id=' + id;
+        }
     }
 </script>
 </body>

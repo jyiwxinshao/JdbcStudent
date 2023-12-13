@@ -24,12 +24,22 @@
     <div class="container">
         <div class="form">
             <form action="updateCheck.jsp?id=<%=id%>" method="post">
-                <div class="inputBox">学号：<input type="text" name="id" value="<%=stu.getId()%>"></div>
-                <div class="inputBox">姓名：<input type="text" name="name" value="<%=stu.getName()%>"></div>
-                <div class="inputBox">密码：<input type="text" name="password" value="<%=stu.getPassword()%>"></div>
+                <div class="inputBox" style="color: #ffffff">学号：<input type="text" name="id" value="<%=stu.getId()%>"
+                                                                       style="width: 80%"></div>
+                <div class="inputBox" style="color: #ffffff">姓名：<input type="text" name="name"
+                                                                       value="<%=stu.getName()%>" style="width: 80%">
+                </div>
+                <div class="inputBox" style="color: #ffffff">年龄：<input type="text" name="age" value="<%=stu.getAge()%>"
+                                                                       style="width: 80%"></div>
+                <div class="inputBox" style="color: #ffffff">生日：<input type="text" name="birthday"
+                                                                       value="<%=stu.getBirthday()%>"
+                                                                       style="width: 80%"></div>
+                <div class="inputBox" style="color: #ffffff">性别：<input type="text" name="sex" value="<%=stu.getSex()%>"
+                                                                       style="width: 80%"></div>
                 <div class="inputBox">
                     <input type="submit" value="修改">
-                    <input type="reset" value="重置">
+                    <input type="reset" value="重置"
+                           style="background: #ffffff;color: #666666;max-width: 100px;cursor: pointer;margin-bottom: 20px;font-weight: 600;position: absolute;right: 60px;">
                 </div>
             </form>
         </div>
